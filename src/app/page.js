@@ -1,9 +1,13 @@
 import Button from '@/components/ui/Button';
 import SectionTitle from '@/components/ui/SectionTitle';
+import CourseCard from '@/components/ui/CourseCard';
+import { courses } from '@/data/courses';
 
 export default function Home() {
+  const featuredCourses = courses.slice(0, 3);
+
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center pb-24">
       {/* Hero Section */}
       <section className="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-24 text-center">
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">Unlock Your Potential</h1>
@@ -15,8 +19,24 @@ export default function Home() {
         </Button>
       </section>
       
+      {/* Featured Courses Section */}
+      <section className="pt-24 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionTitle 
+          title="Featured Courses" 
+          subtitle="Start learning immediately with our most popular courses."
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+          {featuredCourses.map((course) => (
+            <CourseCard key={course.id} course={course} />
+          ))}
+        </div>
+        <div className="text-center mt-12">
+          <Button href="/courses" variant="outline">View All Courses</Button>
+        </div>
+      </section>
+
       {/* Features Section */}
-      <section className="py-24 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="pt-24 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle 
           title="Why Choose Us?" 
           subtitle="We offer the best learning experience with features designed to help you succeed."
